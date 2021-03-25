@@ -58,7 +58,7 @@ export const TETROMINOS = {
         ],
         color: '132, 61, 198',
     },
-    
+
     Z: {
         shape: [
             ['Z', 'Z', 0 ],
@@ -70,7 +70,7 @@ export const TETROMINOS = {
     }
 }
 
-export const randomTeromino = () => { 
+export const randomTetromino = () => { 
     const tetrominos= 'IJLOSTZ';
     const randTeromino = 
     tetrominos[Math.floor(Math.random() * tetrominos.length)];
