@@ -9,33 +9,33 @@ export const usePlayer = () => {
         collided: false,
     });
 
-    const rotate = ( matrix, dir) => {
+    const rotate = (matrix, dir) => {
         //make the rows to become columns (transpose)
-        const rotateTetro = matrix.map((_, index) => matrix.map(col => col[index]),
+        const rotatedTetro = matrix.map((_, index) => matrix.map(col => col[index]),
         );
         //Reverse each row to get a rotated matrix
-        if ( dir > 0) return rotateTetro.map(row => row.reverse());
-        return rotateTetro.reverse();
+        if ( dir > 0) return rotatedTetro.map(row => row.reverse());
+        return rotatedTetro.reverse();
     };
 
     const playerRotate = (stage, dir) => {
-        const clonePlayer = JSON.parse(JSON.stringify(player));
-        clonePlayer.tetromino = rotate(clonePlayer.tetromino, dir);
+        const clonedPlayer = JSON.parse(JSON.stringify(player));
+        clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
 
-        const pos = clonePlayer.pos.x;
+        const pos = clonedPlayer.pos.x;
         let offset = 1;
-        while(checkCollision(clonePlayer, stage, { x: 0, y: 0 })) {
-            clonePlayer.pos.x  += offset;
+        while(checkCollision(clonedPlayer, stage, { x: 0, y: 0 })) {
+            clonedPlayer.pos.x  += offset;
             offset = -(offset + (offset > 0 ? 1 : -1));
-            if(offset > clonePlayer.tetromino[0].length) {
-                rotate(clonePlayer.tetromino, -dir);
-                clonePlayer.pos.x = pos;
+            if(offset > clonedPlayer.tetromino[0].length) {
+                rotate(clonedPlayer.tetromino, -dir);
+                clonedPlayer.pos.x = pos;
                 return;
             }
 
         }
 
-        setPlayer(clonePlayer)
+        setPlayer(clonedPlayer);
     };
 
     const updatePlayerPos =  ({ x, y, collided }) => {
@@ -43,8 +43,8 @@ export const usePlayer = () => {
             ...prev,
             pos: { x: (prev.pos.x += x), y: (prev.pos.y += y)},
             collided,
-        }))
-    }
+        }));
+    };
 
     const resetPlayer = useCallback(() => {
         setPlayer({
@@ -55,4 +55,4 @@ export const usePlayer = () => {
     },[])
 
     return [player, updatePlayerPos, resetPlayer, playerRotate];
-}
+};

@@ -44,7 +44,7 @@ const startGame = () => {
 const drop = () => {
 	if(!checkCollision(player, stage, {x: 0, y: 1 })) {
 		updatePlayerPos({ x: 0, y: 1, collided: false})
-	}else {
+	} else {
 		//Game over
 		if(player.pos.y < 1) {
 			console.log("Game Over!!!");
