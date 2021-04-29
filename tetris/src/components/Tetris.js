@@ -33,7 +33,7 @@ const movePlayer = dir => {
 }
 
 const startGame = () => {
-	console.log('test')
+	// console.log('test')
 	// Reset everything
 	setStage(createStage());
 	resetPlayer();
@@ -59,7 +59,7 @@ const dropPlayer = () => {
 	drop();
 }
 
-const move = ({keyCode}) => {
+const move = ({ keyCode }) => {
 	if(!gameOver) {
 		if(keyCode === 37) {
 			movePlayer(-1);
@@ -67,8 +67,7 @@ const move = ({keyCode}) => {
 			movePlayer(1);
 		} else if (keyCode === 40) {
 			dropPlayer();
-		}
-		else if (keyCode === 38) {
+		} else if (keyCode === 38) {
 			playerRotate(stage, 1)
 		}
 	}

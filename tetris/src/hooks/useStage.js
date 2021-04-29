@@ -7,7 +7,6 @@ export const useStage = (player, resetPlayer) => {
     const [rowsCleared, setRowsCleared] = useState(0);
 
     useEffect(() => {
-
         setRowsCleared(0);
 
         const sweepRows = newStage =>
@@ -51,5 +50,5 @@ export const useStage = (player, resetPlayer) => {
         setStage(prev => updateStage(prev));
     }, [player, resetPlayer]);
 
-    return[stage, setStage];
+    return[stage, setStage, rowsCleared];
 };
